@@ -7,3 +7,4 @@ TODO:
 - [ ] maybe make i3 default wm
 - [ ] add motd to `/etc/motd`
 - [ ] update readme with installation instructions
+- [ ] install node via asdf
