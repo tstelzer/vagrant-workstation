@@ -7,7 +7,7 @@ TODO:
 - [ ] maybe make i3 default wm
 - [ ] add motd to `/etc/motd`
 - [ ] update readme with installation instructions
-- [ ] install node via asdf
+- [x] install node via asdf
 - [x] fix i3 dependencies
 - [ ] add terminator configuration
 - [ ] run PlugInstall on vim
