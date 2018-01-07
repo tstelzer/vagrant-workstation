@@ -18,6 +18,12 @@ sudo dnf install -y yadm tmux vim-enhanced zsh terminator i3 fzf ripgrep yarn re
 # Clone and install asdf.
 git clone 'https://github.com/asdf-vm/asdf.git' "${HOME}/.asdf" --branch v0.4.1
 
+# Install nodejs.
+asdf plugin-add nodejs
+${HOME}/.asdf/plugins/nodejs/bin/import-release-team-keyring
+asdf install nodejs 9.3.0
+asdf global nodejs 9.3.0
+
 # Clone dotfiles.
 yadm clone 'https://github.com/tstelzer/dotfiles' --no-bootstrap
 
