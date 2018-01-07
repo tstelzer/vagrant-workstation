@@ -10,10 +10,10 @@ sudo dnf copr enable -y carlwgeorge/ripgrep
 sudo wget 'https://dl.yarnpkg.com/rpm/yarn.repo' -O /etc/yum.repos.d/yarn.repo
 
 # Install required packages.
-sudo dnf install -y openssl-devel cmake
+sudo dnf install -y openssl-devel cmake python3-devel
 
 # Install software.
-sudo dnf install -y yadm tmux vim-enhanced zsh terminator i3 fzf ripgrep yarn
+sudo dnf install -y yadm tmux vim-enhanced zsh terminator i3 fzf ripgrep yarn redshift
 
 # Clone and install asdf.
 git clone 'https://github.com/asdf-vm/asdf.git' "${HOME}/.asdf" --branch v0.4.1
@@ -27,8 +27,24 @@ sudo usermod -s /bin/zsh ${USER}
 # Install rust toolchain.
 curl 'https://sh.rustup.rs' -sSf | sh -s -- --default-toolchain stable -y
 
-# Source environment variables.
-source "${HOME}/.zshenv"
+# Add cargo to path.
+if [ -d "${HOME}/.cargo/bin" ]; then
+    export PATH="$PATH:${HOME}/.cargo/bin"
+fi
 
 # Install cargo software.
-cargo install cargo-update fd-find
+cargo install cargo-update fd-find --quiet
+
+# Install i3pystatus dependencies.
+pip3 install -q --user 'git+https://github.com/enkore/i3pystatus.git' colour netifaces
+
+# Get iosevka font.
+# wget -O "${HOME}/tmp/iosevka.zip" 'https://github.com/be5invis/Iosevka/releases/download/v1.13.3/iosevka-term-ss09-1.13.3.zip'
+
+# mkdir "${HOME}/.fonts"\ 
+#     && cd "${HOME}/tmp"\ 
+#     && unzip "iosevka-term-ss09-1.13.3.zip"\ 
+#     && mv ttf/* "${HOME}/.fonts/"\ 
+#     && fs-cache -fs
+
+# sudo echo "Run 'vim -c PlugInstall -c q -q!'" > /etc/motd
