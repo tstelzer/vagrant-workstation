@@ -1,0 +1,31 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# Enable copr repositories.
+sudo dnf copr enable -y thelocehiliosan/yadm
+sudo dnf copr enable -y carlwgeorge/ripgrep
+
+# Install required packages.
+sudo dnf install -y openssl-devel cmake
+
+# Install software.
+sudo dnf install -y yadm tmux vim-enhanced zsh terminator i3 fzf ripgrep
+
+# Clone and install asdf.
+git clone 'https://github.com/asdf-vm/asdf.git' "${HOME}/.asdf" --branch v0.4.1
+
+# Clone dotfiles.
+yadm clone 'https://github.com/tstelzer/dotfiles' --no-bootstrap
+
+# Change default login shell.
+sudo usermod -s /bin/zsh ${USER}
+
+# Install rust toolchain.
+curl 'https://sh.rustup.rs' -sSf | sh -s -- --default-toolchain stable -y
+
+# Source environment variables.
+source "${HOME}/.zshenv"
+
+# Install cargo software.
+cargo install cargo-update fd-find
