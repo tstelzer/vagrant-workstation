@@ -11,10 +11,10 @@ sudo dnf copr enable -y carlwgeorge/ripgrep
 sudo wget 'https://dl.yarnpkg.com/rpm/yarn.repo' -O /etc/yum.repos.d/yarn.repo
 
 # Install required dev packages.
-sudo dnf install -y openssl-devel cmake python3-devel dbus-devel libX11-devel libXrandr-devel glib2-devel pango-devel gtk3-devel libxdg-basedir-devel libXScrnSaver-devel i3blocks kbdd
+sudo dnf install -y openssl-devel cmake python3-devel dbus-devel libX11-devel libXrandr-devel glib2-devel pango-devel gtk3-devel libxdg-basedir-devel libXScrnSaver-devel
 
 # Install software.
-sudo dnf install -y yadm tmux vim-enhanced zsh terminator i3 fzf ripgrep yarn redshift
+sudo dnf install -y yadm tmux vim-enhanced zsh terminator i3 fzf ripgrep yarn redshift i3blocks kbdd sysstat
 
 # Clone and install asdf.
 git clone 'https://github.com/asdf-vm/asdf.git' "${HOME}/.asdf" --branch v0.4.2
@@ -34,9 +34,9 @@ if [ -d "${HOME}/.cargo/bin" ]; then
 fi
 
 # Install cargo software.
-cargo install cargo-update
-cargo install fd-find
-cargo install --git https://github.com/jwilm/alacritty
+cargo install cargo-update --quiet
+cargo install fd-find --quiet
+# cargo install --git https://github.com/jwilm/alacritty --quiet
 
 # Get iosevka font.
 # wget -O "${HOME}/tmp/iosevka.zip" 'https://github.com/be5invis/Iosevka/releases/download/v1.13.3/iosevka-term-ss09-1.13.3.zip'
@@ -50,3 +50,5 @@ cargo install --git https://github.com/jwilm/alacritty
 # ${HOME}/.asdf/plugins/nodejs/bin/import-release-team-keyring
 # asdf install nodejs 9.6.1
 # asdf global nodejs 9.6.1
+
+dnf upgrade -y
