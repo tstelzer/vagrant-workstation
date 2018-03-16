@@ -53,4 +53,5 @@ rm -r ~/tmp
 # asdf install nodejs 9.6.1
 # asdf global nodejs 9.6.1
 
+sudo dnf update -y
 sudo dnf upgrade -y
