@@ -6,6 +6,7 @@ IFS=$'\n\t'
 sudo dnf copr enable -y thelocehiliosan/yadm
 sudo dnf copr enable -y wyvie/i3blocks
 sudo dnf copr enable -y carlwgeorge/ripgrep
+sudo dnf copr enable -y keefle/fd
 
 # Enable yarn repository.
 sudo wget 'https://dl.yarnpkg.com/rpm/yarn.repo' -O /etc/yum.repos.d/yarn.repo
@@ -14,7 +15,7 @@ sudo wget 'https://dl.yarnpkg.com/rpm/yarn.repo' -O /etc/yum.repos.d/yarn.repo
 sudo dnf install -y openssl-devel cmake python3-devel dbus-devel libX11-devel libXrandr-devel glib2-devel pango-devel gtk3-devel libxdg-basedir-devel libXScrnSaver-devel qt5.noarch ncurses-devel xsel
 
 # Install cmdline stuff.
-sudo dnf install -y yadm tmux vim-enhanced zsh fzf ripgrep yarn qalc
+sudo dnf install -y yadm tmux vim-enhanced zsh fzf ripgrep yarn qalc fd
 
 # Install gui stuff.
 sudo dnf install -y terminator i3 redshift i3blocks kbdd sysstat
@@ -29,17 +30,15 @@ yadm clone 'https://github.com/tstelzer/dotfiles' --no-bootstrap
 sudo usermod -s /bin/zsh ${USER}
 
 # Install rust toolchain.
-curl 'https://sh.rustup.rs' -sSf | sh -s -- --default-toolchain stable -y
+# curl 'https://sh.rustup.rs' -sSf | sh -s -- --default-toolchain stable -y
 
 # Add cargo to path.
-if [ -d "${HOME}/.cargo/bin" ]; then
-    export PATH="$PATH:${HOME}/.cargo/bin"
-fi
+# if [ -d "${HOME}/.cargo/bin" ]; then
+#     export PATH="$PATH:${HOME}/.cargo/bin"
+# fi
 
 # Install cargo software.
-cargo install cargo-update --quiet
-cargo install fd-find --quiet
-cargo install --git https://github.com/jwilm/alacritty --quiet
+# cargo install cargo-update --quiet
 
 # Get iosevka font.
 wget -O "${HOME}/tmp/iosevka.zip" 'https://github.com/be5invis/Iosevka/releases/download/v1.13.3/iosevka-term-ss09-1.13.3.zip'
