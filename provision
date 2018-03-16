@@ -11,10 +11,13 @@ sudo dnf copr enable -y carlwgeorge/ripgrep
 sudo wget 'https://dl.yarnpkg.com/rpm/yarn.repo' -O /etc/yum.repos.d/yarn.repo
 
 # Install required dev packages.
-sudo dnf install -y openssl-devel cmake python3-devel dbus-devel libX11-devel libXrandr-devel glib2-devel pango-devel gtk3-devel libxdg-basedir-devel libXScrnSaver-devel
+sudo dnf install -y openssl-devel cmake python3-devel dbus-devel libX11-devel libXrandr-devel glib2-devel pango-devel gtk3-devel libxdg-basedir-devel libXScrnSaver-devel qt5.noarch ncurses-devel xsel
 
-# Install software.
-sudo dnf install -y yadm tmux vim-enhanced zsh terminator i3 fzf ripgrep yarn redshift i3blocks kbdd sysstat
+# Install cmdline stuff.
+sudo dnf install -y yadm tmux vim-enhanced zsh fzf ripgrep yarn qalc
+
+# Install gui stuff.
+sudo dnf install -y terminator i3 redshift i3blocks kbdd sysstat
 
 # Clone and install asdf.
 git clone 'https://github.com/asdf-vm/asdf.git' "${HOME}/.asdf" --branch v0.4.2
@@ -36,12 +39,12 @@ fi
 # Install cargo software.
 cargo install cargo-update --quiet
 cargo install fd-find --quiet
-# cargo install --git https://github.com/jwilm/alacritty --quiet
+cargo install --git https://github.com/jwilm/alacritty --quiet
 
 # Get iosevka font.
-# wget -O "${HOME}/tmp/iosevka.zip" 'https://github.com/be5invis/Iosevka/releases/download/v1.13.3/iosevka-term-ss09-1.13.3.zip'
-# mkdir "${HOME}/.fonts" && cd "${HOME}/tmp" && unzip "iosevka.zip" && mv ttf/* "${HOME}/.fonts/" && fs-cache -fs
-# rm -r ~/tmp
+wget -O "${HOME}/tmp/iosevka.zip" 'https://github.com/be5invis/Iosevka/releases/download/v1.13.3/iosevka-term-ss09-1.13.3.zip'
+mkdir "${HOME}/.fonts" && cd "${HOME}/tmp" && unzip "iosevka.zip" && mv ttf/* "${HOME}/.fonts/" && fc-cache -fs
+rm -r ~/tmp
 
 # sudo echo "Run 'vim -c PlugInstall -c q -q!'" > /etc/motd
 
@@ -51,4 +54,4 @@ cargo install fd-find --quiet
 # asdf install nodejs 9.6.1
 # asdf global nodejs 9.6.1
 
-dnf upgrade -y
+sudo dnf upgrade -y
